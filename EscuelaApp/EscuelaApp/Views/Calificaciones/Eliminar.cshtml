@@ -1,0 +1,26 @@
+@model Calificacion
+@{
+    ViewData["Title"] = "Eliminar calificación";
+}
+
+<div class="page-header">
+    <h2>Eliminar calificación</h2>
+</div>
+
+<div class="form-card confirm-card">
+    <p class="confirm-msg">¿Eliminar la calificación de <strong>@Model.Alumno?.Nombre</strong>?</p>
+
+    <div class="detail-info">
+        <span><strong>Materia:</strong> @Model.Materia</span>
+        <span><strong>Calificación:</strong> @Model.Calific</span>
+        <span><strong>Periodo:</strong> @Model.Periodo</span>
+    </div>
+
+    <form asp-action="Eliminar" asp-route-id="@Model.Id" method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+            <a asp-action="Index" class="btn btn-outline">Cancelar</a>
+        </div>
+    </form>
+</div>

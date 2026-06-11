@@ -1,0 +1,59 @@
+@model Calificacion
+@{
+    ViewData["Title"] = "Nueva calificación";
+    var alumnos = ViewBag.Alumnos as List<Alumno> ?? new();
+}
+
+<div class="page-header">
+    <h2>Nueva calificación</h2>
+    <a asp-action="Index" class="btn btn-outline">← Volver</a>
+</div>
+
+<div class="form-card">
+    <form asp-action="Crear" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label asp-for="AlumnoId">Alumno</label>
+            <select asp-for="AlumnoId">
+                <option value="">-- Selecciona un alumno --</option>
+                @foreach (var a in alumnos)
+                {
+                    if (ViewBag.AlumnoId == a.Id)
+                    {
+                        <option value="@a.Id" selected>@a.Nombre (@a.Matricula)</option>
+                    }
+                    else
+                    {
+                        <option value="@a.Id">@a.Nombre (@a.Matricula)</option>
+                    }
+                }
+            </select>
+            <span asp-validation-for="AlumnoId" class="error"></span>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label asp-for="Materia">Materia</label>
+                <input asp-for="Materia" />
+                <span asp-validation-for="Materia" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Periodo">Periodo</label>
+                <input asp-for="Periodo" placeholder="Ej: 2026-1" />
+                <span asp-validation-for="Periodo" class="error"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Calific">Calificación (0 – 10)</label>
+            <input asp-for="Calific" type="number" step="0.1" min="0" max="10" />
+            <span asp-validation-for="Calific" class="error"></span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Guardar calificación</button>
+            <a asp-action="Index" class="btn btn-outline">Cancelar</a>
+        </div>
+    </form>
+</div>

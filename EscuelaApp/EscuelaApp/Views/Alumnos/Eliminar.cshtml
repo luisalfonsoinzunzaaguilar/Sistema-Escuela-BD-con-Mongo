@@ -1,0 +1,27 @@
+@model Alumno
+@{
+    ViewData["Title"] = "Eliminar alumno";
+}
+
+<div class="page-header">
+    <h2>Eliminar alumno</h2>
+</div>
+
+<div class="form-card confirm-card">
+    <p class="confirm-msg">¿Estás seguro de que deseas eliminar a <strong>@Model.Nombre</strong>?</p>
+    <p class="confirm-warn">⚠️ También se eliminarán todas sus calificaciones. Esta acción no se puede deshacer.</p>
+
+    <div class="detail-info">
+        <span><strong>Matrícula:</strong> @Model.Matricula</span>
+        <span><strong>Carrera:</strong> @Model.Carrera</span>
+        <span><strong>Email:</strong> @Model.Email</span>
+    </div>
+
+    <form asp-action="Eliminar" asp-route-id="@Model.Id" method="post">
+        @Html.AntiForgeryToken()
+        <div class="form-actions">
+            <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+            <a asp-action="Index" class="btn btn-outline">Cancelar</a>
+        </div>
+    </form>
+</div>

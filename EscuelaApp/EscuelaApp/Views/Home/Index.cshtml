@@ -1,0 +1,30 @@
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="dashboard">
+    <h1>Panel Principal</h1>
+    <p class="subtitle">Bienvenido, <strong>@User.Identity?.Name</strong></p>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-num">@ViewBag.TotalAlumnos</span>
+            <span class="stat-label">Alumnos registrados</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-num">@ViewBag.TotalCalificaciones</span>
+            <span class="stat-label">Calificaciones</span>
+        </div>
+        <div class="stat-card">
+            <span class="stat-num">@ViewBag.PromedioGeneral</span>
+            <span class="stat-label">Promedio general</span>
+        </div>
+    </div>
+
+    <div class="quick-actions">
+        <a asp-controller="Alumnos" asp-action="Crear" class="btn btn-primary">+ Nuevo alumno</a>
+        <a asp-controller="Calificaciones" asp-action="Crear" class="btn btn-secondary">+ Nueva calificación</a>
+        <a asp-controller="Alumnos" asp-action="Index" class="btn btn-outline">Ver alumnos</a>
+        <a asp-controller="Calificaciones" asp-action="Index" class="btn btn-outline">Ver calificaciones</a>
+    </div>
+</div>

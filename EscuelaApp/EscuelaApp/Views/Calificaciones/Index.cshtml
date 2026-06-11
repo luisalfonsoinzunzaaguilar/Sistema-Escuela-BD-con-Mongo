@@ -1,0 +1,45 @@
+@model List<Calificacion>
+@{
+    ViewData["Title"] = "Calificaciones";
+}
+
+<div class="page-header">
+    <h2>Calificaciones</h2>
+    <a asp-action="Crear" class="btn btn-primary">+ Nueva calificación</a>
+</div>
+
+@if (!Model.Any())
+{
+    <p class="empty-msg">No hay calificaciones registradas aún.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Alumno</th>
+                <th>Materia</th>
+                <th>Calificación</th>
+                <th>Periodo</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var c in Model)
+            {
+                <tr>
+                    <td>@(c.Alumno?.Nombre ?? "—")</td>
+                    <td>@c.Materia</td>
+                    <td><span class="badge @(c.Calific >= 6 ? "badge-ok" : "badge-fail")">@c.Calific</span></td>
+                    <td>@c.Periodo</td>
+                    <td>@c.Fecha.ToLocalTime().ToString("dd/MM/yyyy")</td>
+                    <td class="actions">
+                        <a asp-action="Editar"   asp-route-id="@c.Id" class="btn btn-sm btn-secondary">Editar</a>
+                        <a asp-action="Eliminar" asp-route-id="@c.Id" class="btn btn-sm btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

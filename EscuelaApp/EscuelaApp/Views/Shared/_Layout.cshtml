@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] — EscuelaApp</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+
+@if (User.Identity?.IsAuthenticated == true)
+{
+    <nav class="navbar">
+        <a class="brand" asp-controller="Home" asp-action="Index">🎓 EscuelaApp</a>
+        <div class="nav-links">
+            <a asp-controller="Alumnos" asp-action="Index">Alumnos</a>
+            <a asp-controller="Calificaciones" asp-action="Index">Calificaciones</a>
+            <span class="nav-user">@User.Identity.Name</span>
+            <form asp-controller="Auth" asp-action="Logout" method="post" style="display:inline">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn-logout">Salir</button>
+            </form>
+        </div>
+    </nav>
+}
+
+<main class="container">
+    @if (TempData["Exito"] != null)
+    {
+        <div class="alert alert-ok">✅ @TempData["Exito"]</div>
+    }
+    @RenderBody()
+</main>
+
+</body>
+</html>

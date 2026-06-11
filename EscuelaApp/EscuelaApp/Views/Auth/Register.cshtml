@@ -1,0 +1,48 @@
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Registro";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Registro — EscuelaApp</title>
+    <link rel="stylesheet" href="~/css/site.css"/>
+</head>
+<body class="auth-page">
+<div class="auth-box">
+    <h1>🎓 EscuelaApp</h1>
+    <h2>Crear cuenta</h2>
+
+    <form asp-action="Register" method="post">
+        @Html.AntiForgeryToken()
+
+        <div asp-validation-summary="ModelOnly" class="alert alert-error"></div>
+
+        <div class="form-group">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" type="email" />
+            <span asp-validation-for="Email" class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password">Contraseña</label>
+            <input asp-for="Password" type="password" />
+            <span asp-validation-for="Password" class="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="ConfirmPassword">Confirmar contraseña</label>
+            <input asp-for="ConfirmPassword" type="password" />
+            <span asp-validation-for="ConfirmPassword" class="error"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Registrarse</button>
+    </form>
+
+    <p class="auth-link">¿Ya tienes cuenta? <a asp-action="Login">Inicia sesión</a></p>
+</div>
+</body>
+</html>

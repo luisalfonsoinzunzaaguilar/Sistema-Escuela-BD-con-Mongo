@@ -1,0 +1,63 @@
+@model Alumno
+@{
+    ViewData["Title"] = Model.Nombre;
+    var califs = ViewBag.Calificaciones as List<Calificacion> ?? new();
+}
+
+<div class="page-header">
+    <h2>@Model.Nombre</h2>
+    <div>
+        <a asp-action="Editar" asp-route-id="@Model.Id" class="btn btn-secondary">Editar</a>
+        <a asp-action="Index" class="btn btn-outline">← Volver</a>
+    </div>
+</div>
+
+<div class="detail-grid">
+    <div class="form-card">
+        <h3>Datos del alumno</h3>
+        <div class="detail-info">
+            <span><strong>Matrícula:</strong> @Model.Matricula</span>
+            <span><strong>Carrera:</strong> @Model.Carrera</span>
+            <span><strong>Email:</strong> @Model.Email</span>
+            <span><strong>Registro:</strong> @Model.FechaRegistro.ToLocalTime().ToString("dd/MM/yyyy")</span>
+        </div>
+    </div>
+
+    <div class="form-card">
+        <div class="page-header" style="margin-bottom:1rem">
+            <h3>Calificaciones (@califs.Count)</h3>
+            <a asp-controller="Calificaciones" asp-action="Crear" asp-route-alumnoId="@Model.Id"
+               class="btn btn-sm btn-primary">+ Agregar</a>
+        </div>
+
+        @if (!califs.Any())
+        {
+            <p class="empty-msg">Sin calificaciones aún.</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr><th>Materia</th><th>Calificación</th><th>Periodo</th><th></th></tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in califs)
+                    {
+                        <tr>
+                            <td>@c.Materia</td>
+                            <td><span class="badge @(c.Calific >= 6 ? "badge-ok" : "badge-fail")">@c.Calific</span></td>
+                            <td>@c.Periodo</td>
+                            <td class="actions">
+                                <a asp-controller="Calificaciones" asp-action="Editar" asp-route-id="@c.Id"
+                                   class="btn btn-sm btn-secondary">Editar</a>
+                                <a asp-controller="Calificaciones" asp-action="Eliminar" asp-route-id="@c.Id"
+                                   class="btn btn-sm btn-danger">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <p class="promedio">Promedio: <strong>@califs.Average(c => c.Calific).ToString("F2")</strong></p>
+        }
+    </div>
+</div>

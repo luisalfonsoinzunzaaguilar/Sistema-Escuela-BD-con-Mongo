@@ -1,0 +1,45 @@
+@model Alumno
+@{
+    ViewData["Title"] = "Nuevo alumno";
+}
+
+<div class="page-header">
+    <h2>Nuevo alumno</h2>
+    <a asp-action="Index" class="btn btn-outline">← Volver</a>
+</div>
+
+<div class="form-card">
+    <form asp-action="Crear" method="post">
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <label asp-for="Nombre">Nombre completo</label>
+            <input asp-for="Nombre" />
+            <span asp-validation-for="Nombre" class="error"></span>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label asp-for="Matricula">Matrícula</label>
+                <input asp-for="Matricula" />
+                <span asp-validation-for="Matricula" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" type="email" />
+                <span asp-validation-for="Email" class="error"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Carrera">Carrera</label>
+            <input asp-for="Carrera" />
+            <span asp-validation-for="Carrera" class="error"></span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Guardar alumno</button>
+            <a asp-action="Index" class="btn btn-outline">Cancelar</a>
+        </div>
+    </form>
+</div>
