@@ -54,6 +54,6 @@ dotnet run
 ## Variables de entorno (producción)
 
 ```
-MongoDB__URI=mongodb+srv://escuela:Escuela2026@escuelacluster.7affiqq.mongodb.net/
+MONGODB_URI="mongodb+srv://usuario: pass@cluster.mongodb.net/miapp"
 MongoDB__Database=escueladb
 ```

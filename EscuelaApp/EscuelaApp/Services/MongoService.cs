@@ -10,7 +10,8 @@ namespace EscuelaApp.Services
 
         public MongoService(IConfiguration config)
         {
-            var uri = config["MongoDB:URI"];
+            var uri = Environment.GetEnvironmentVariable("MONGODB_URI")
+                ?? config["MongoDB:URI"];
             var client = new MongoClient(uri);
             _db = client.GetDatabase(config["MongoDB:Database"]);
 
