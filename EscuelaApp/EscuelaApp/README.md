@@ -41,7 +41,7 @@ Usuario demo: `demo@demo.com` / `Demo1234`
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/TU_USUARIO/EscuelaApp.git
+git clone https://github.com/luisalfonsoinzunzaaguilar/Sistema-Escuela-BD-con-Mongo.git
 cd EscuelaApp
 
 # 2. Configurar la cadena de conexión en appsettings.json
