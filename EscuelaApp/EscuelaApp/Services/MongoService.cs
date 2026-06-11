@@ -13,7 +13,8 @@ namespace EscuelaApp.Services
             var uri = Environment.GetEnvironmentVariable("MONGODB_URI")
                 ?? config["MongoDB:URI"];
             var client = new MongoClient(uri);
-            _db = client.GetDatabase(config["MongoDB:Database"]);
+            var mongoUrl = new MongoDB.Driver.MongoUrl(uri);
+            _db = client.GetDatabase(mongoUrl.DatabaseName ?? config["MongoDB:Database"]);
 
             CrearIndices();
         }
