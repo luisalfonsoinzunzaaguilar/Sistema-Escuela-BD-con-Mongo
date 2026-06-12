@@ -11,7 +11,7 @@ Permite login, registro y operaciones CRUD completas sobre dos entidades relacio
 
 **Relación: Referencia (ObjectId)**
 Se eligió referencia porque un alumno puede tener muchas calificaciones a lo largo del tiempo.
-Guardarlas embebidas haría crecer el documento sin control y dificultaría editar/eliminar una calificación individual.
+Guardarlas embebidas haría crecer el documento sin control y dificultaría editar o eliminar una calificación individual.
 
 ## Versión de MongoDB
 
@@ -22,7 +22,7 @@ Guardarlas embebidas haría crecer el documento sin control y dificultaría edit
 - Backend: ASP.NET Core 8 MVC (C#)
 - Base de datos: MongoDB 8.0.26 via MongoDB.Driver
 - Autenticación: Cookie Authentication + BCrypt
-- Despliegue: Render.com
+- Despliegue: Railway
 
 ## Índices declarados
 
@@ -49,11 +49,4 @@ cd EscuelaApp
 
 # 3. Ejecutar
 dotnet run
-```
-
-## Variables de entorno (producción)
-
-```
-MONGODB_URI="mongodb+srv://usuario: pass@cluster.mongodb.net/miapp"
-MongoDB__Database=escueladb
 ```
